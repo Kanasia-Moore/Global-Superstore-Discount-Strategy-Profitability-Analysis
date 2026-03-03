@@ -30,6 +30,11 @@ SELECT
 FROM `orders`;
 
 SELECT 
+  COUNTIF(sales = 0) AS zero_sales,
+  COUNTIF(profit = 0) AS zero_profit
+FROM `orders`;
+
+SELECT 
   DISTINCT discount
 FROM `orders`;
 
