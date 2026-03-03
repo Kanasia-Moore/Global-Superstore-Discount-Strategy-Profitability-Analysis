@@ -38,6 +38,20 @@ SELECT
 FROM `orders`
 WHERE discount = 0.002;
 
+SELECT 
+    ROUND(
+        SUM(CASE WHEN discount = 0.002 THEN 1 ELSE 0 END) * 100.0
+        / COUNT(*), 
+    2) AS discount_percentage
+FROM `orders`;
+
+SELECT
+    ROUND(SUM(CASE WHEN discount = 0.002 THEN sales ELSE 0 END), 2) AS low_discount_revenue,
+    ROUND(SUM(sales), 2) AS total_revenue,
+    ROUND((SUM(CASE WHEN discount = 0.002 THEN sales ELSE 0 END) 
+        / SUM(sales)), 2) * 100 AS revenue_percentage
+FROM `orders`;
+
 SELECT
   COUNT(*) AS total_returns,
   COUNT(DISTINCT Order_ID) AS distinct_return_orders
