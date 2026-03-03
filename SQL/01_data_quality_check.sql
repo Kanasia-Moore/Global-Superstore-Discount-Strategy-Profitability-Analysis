@@ -29,6 +29,15 @@ SELECT
   MAX(Discount) AS max_discount
 FROM `orders`;
 
+SELECT 
+  DISTINCT discount
+FROM `orders`;
+
+SELECT 
+  COUNT(Discount)
+FROM `orders`
+WHERE discount = 0.002;
+
 SELECT
   COUNT(*) AS total_returns,
   COUNT(DISTINCT Order_ID) AS distinct_return_orders
@@ -50,7 +59,7 @@ WITH orders_flagged AS (
   LEFT JOIN `returns` AS r
     ON o.Order_ID = r.Order_ID
   GROUP BY o.Order_ID
-  ) 
+) 
 SELECT
   COUNTIF(is_returned = 1) AS returned_orders,
   COUNTIF(is_returned = 0) AS non_returned_orders,
