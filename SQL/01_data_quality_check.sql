@@ -1,7 +1,3 @@
--- Global Superstore Data Quality Check
--- Purpose: Validate table grain, key integrity, null presence,
--- and join relationships prior to KPI construction. 
-
 SELECT
   COUNT(*) AS total_orders,
   COUNT(DISTINCT Order_ID) AS distinct_orders
