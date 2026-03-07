@@ -36,3 +36,6 @@ SELECT
 FROM `superstore_base`
 GROUP BY Order_Id;
 
+-- Overall Return Rate Calc
+
+
