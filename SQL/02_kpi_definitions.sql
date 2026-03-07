@@ -38,4 +38,8 @@ GROUP BY Order_Id;
 
 -- Overall Return Rate Calc
 
-
+Select 
+  COUNT(*) AS Total_Orders,
+  COUNTIF(Return_Flag = 1) AS Total_Returns,
+  ROUND(COUNTIF(Return_Flag = 1) / COUNT(*) * 100, 1) AS Return_Rate
+FROM superstore_order_summary
