@@ -11,7 +11,7 @@ SELECT
     WHEN Discount <= 0.15 THEN '1-15%'
     WHEN Discount <= 0.30 THEN '16-30%'
     WHEN Discount <= 0.50 THEN '31-50%'
-    ELSE '50%+'
+    ELSE '>50%'
   END AS Discount_Band,
   ROUND(SAFE_DIVIDE(o.Profit, NULLIF(o.Sales, 0)) * 100, 2) AS Profit_Margin_Line,
   p.Person
