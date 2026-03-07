@@ -27,9 +27,9 @@ SELECT
   ANY_VALUE(Customer_ID) AS Customer_ID,
   ANY_VALUE(Segment) AS Segment,
   ANY_VALUE(Region) AS Region,
-  ANY_VALUE(Order_Year) AS Order_Year,
-  ROUND(SUM(Sales), 2) AS Order_Sales,
-  ROUND(SUM(Profit), 2) AS Order_Profit,
+  ANY_VALUE(Order_Year) AS Year,
+  ROUND(SUM(Sales), 2) AS Sales,
+  ROUND(SUM(Profit), 2) AS Profit,
   ROUND(SAFE_DIVIDE(SUM(Profit), NULLIF(SUM(Sales), 0)) * 100, 2) AS Profit_Margin,
   ROUND(AVG(Discount), 2) AS Avg_Discount,
   MAX(Return_Flag) AS Return_Flag
