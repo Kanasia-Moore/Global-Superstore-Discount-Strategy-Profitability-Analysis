@@ -1,5 +1,6 @@
 -- Superstore base table view (line-level)
-CREATE VIEW superstore_base AS SELECT 
+CREATE VIEW superstore_base AS 
+SELECT 
   o.* EXCEPT(Row_ID),
   EXTRACT(MONTH FROM Order_Date) AS Order_Month,
   EXTRACT(YEAR FROM Order_Date) AS Order_Year,
@@ -20,16 +21,18 @@ LEFT JOIN `people` as p ON o.Region = p.Region
 
 -- Superstore order table view (order-level)
 
-CREATE VIEW inspiring-grove-457423-b0.global_superstore.superstore_order_summary AS SELECT 
-  Order_ID,
+CREATE VIEW inspiring-grove-457423-b0.global_superstore.superstore_order_summary AS 
+SELECT
+  Order_Id,
   ANY_VALUE(Customer_ID) AS Customer_ID,
-  ANY_VALUE(Segment) AS Segment, 
-  ANY_VALUE(Region) AS Region, 
+  ANY_VALUE(Segment) AS Segment,
+  ANY_VALUE(Region) AS Region,
   ANY_VALUE(Order_Year) AS Order_Year,
   ROUND(SUM(Sales), 2) AS Order_Sales,
   ROUND(SUM(Profit), 2) AS Order_Profit,
-  ROUND(AVG(Discount), 2) Avg_Dicsount,
-  MAX(Return_Flagged) AS Return_Flagged
+  ROUND(SAFE_DIVIDE(SUM(Profit), NULLIF(SUM(Sales), 0)) * 100, 2) AS Profit_Margin,
+  ROUND(AVG(Discount), 2) AS Avg_Discount,
+  MAX(Return_Flag) AS Return_Flag
 FROM `inspiring-grove-457423-b0.global_superstore.superstore_base`
-GROUP BY Order_ID;
+GROUP BY Order_Id;
 
