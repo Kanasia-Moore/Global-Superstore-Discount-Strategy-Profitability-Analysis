@@ -21,7 +21,7 @@ LEFT JOIN `people` as p ON o.Region = p.Region
 
 -- Superstore order table view (order-level)
 
-CREATE VIEW inspiring-grove-457423-b0.global_superstore.superstore_order_summary AS 
+CREATE VIEW superstore_order_summary AS 
 SELECT
   Order_Id,
   ANY_VALUE(Customer_ID) AS Customer_ID,
@@ -33,6 +33,6 @@ SELECT
   ROUND(SAFE_DIVIDE(SUM(Profit), NULLIF(SUM(Sales), 0)) * 100, 2) AS Profit_Margin,
   ROUND(AVG(Discount), 2) AS Avg_Discount,
   MAX(Return_Flag) AS Return_Flag
-FROM `inspiring-grove-457423-b0.global_superstore.superstore_base`
+FROM `superstore_base`
 GROUP BY Order_Id;
 
