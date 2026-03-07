@@ -4,7 +4,7 @@ SELECT
   o.* EXCEPT(Row_ID),
   EXTRACT(MONTH FROM Order_Date) AS Order_Month,
   EXTRACT(YEAR FROM Order_Date) AS Order_Year,
-  If(r.Returned IS NOT NULL, 1, 0) AS Return_Flagged,
+  If(r.Returned IS NOT NULL, 1, 0) AS Return_Flag,
   CASE
     WHEN Discount = 0 THEN '0%'
     WHEN Discount <= 0.01 THEN '<1%'
