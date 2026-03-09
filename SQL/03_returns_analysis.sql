@@ -78,7 +78,6 @@ SELECT
   `Sub-Category`,
   ROUND(SUM(Sales), 2) Sales_by_SubCat,
   ROUND(SUM(Profit), 2) Profit_by_SubCat,
-  ROUND(SAFE_DIVIDE(SUM(Profit), NULLIF(SUM(Sales), 0)) * 100, 2) AS Profit_Margin,
   ROUND(Avg(Discount) * 100, 2) AS Avg_Discount,
   ROUND(SAFE_DIVIDE(
           COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END),
