@@ -72,3 +72,24 @@ SELECT
 FROM `superstore_base`
 GROUP BY Discount_Band
 ORDER BY Return_Rate DESC
+  
+-- Top Sub-Categories by Return Rate
+WITH Top_Subcat_Rankings AS (
+SELECT
+  `Sub-Category`,
+  COUNT(DISTINCT Order_ID) AS Orders_by_SubCat,
+  COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END) AS Return_Orders,
+  ROUND(SAFE_DIVIDE(
+      COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END),
+      COUNT(DISTINCT Order_ID)) * 100, 2 ) AS Return_Rate
+FROM `superstore_base`
+GROUP BY `Sub-Category`
+)
+SELECT 
+  `Sub-Category`,
+  Orders_by_SubCat,
+  Return_Orders,
+  Return_Rate,
+  RANK() OVER (ORDER BY Return_Rate DESC) AS Ranking
+FROM Top_Subcat_Rankings
+ORDER BY Ranking;
