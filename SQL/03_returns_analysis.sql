@@ -57,6 +57,18 @@ FROM `superstore_order_summary`
 GROUP BY Segment
 ORDER BY Return_Rate_Percent DESC
 
+-- Return Rate per Ship Mode
+SELECT
+  Ship_Mode,
+  COUNT(DISTINCT Order_ID) AS Orders_by_Ship,
+  COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END) AS Return_Orders,
+  ROUND(SAFE_DIVIDE(
+          COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END),
+          COUNT(DISTINCT Order_ID)) * 100, 2) AS Return_Rate_Percent
+FROM `superstore_base`
+GROUP BY Ship_Mode
+ORDER BY Return_Rate_Percent DESC
+
 -- Return Rate per Discount Band
 SELECT
   Discount_Band,
@@ -68,3 +80,17 @@ SELECT
 FROM `superstore_base`
 GROUP BY Discount_Band
 ORDER BY Return_Rate_Percent DESC
+
+-- Priortity Return by Sub-Category
+SELECT
+  `Sub-Category`,
+  ROUND(SUM(Sales), 2) Sales_by_SubCat,
+  ROUND(SUM(Profit), 2) Profit_by_SubCat,
+  ROUND(SAFE_DIVIDE(SUM(Profit), NULLIF(SUM(Sales), 0)) * 100, 2) AS Profit_Margin,
+  ROUND(Avg(Discount) * 100, 2) AS Avg_Discount,
+  ROUND(SAFE_DIVIDE(
+          COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END),
+          COUNT(DISTINCT Order_ID)) * 100, 2) AS Return_Rate_Percent
+FROM `superstore_base`
+GROUP BY `Sub-Category` 
+ORDER BY Return_Rate_Percent DESC;
