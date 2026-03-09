@@ -15,7 +15,7 @@ SELECT
           COUNT(DISTINCT Order_ID)) * 100, 1) AS Return_Rate
 FROM `superstore_base`
 GROUP BY Category
-ORDER BY Return_Rate_Percent DESC;
+ORDER BY Return_Rate DESC;
 
 -- Return Rate Per Sub-Category
 SELECT
@@ -27,7 +27,7 @@ SELECT
           COUNT(DISTINCT Order_ID)) * 100, 1) AS Return_Rate
 FROM `superstore_base`
 GROUP BY `Sub-Category`
-ORDER BY Return_Rate_Percent DESC
+ORDER BY Return_Rate DESC
 
 -- Return Rate Per Region
 SELECT
@@ -47,7 +47,7 @@ SELECT
   ROUND(SAFE_DIVIDE(COUNTIF(Return_Flag = 1), COUNT(Order_ID)) * 100, 1) AS Return_Rate
 FROM `superstore_order_summary`
 GROUP BY Segment
-ORDER BY Return_Rate_Percent DESC
+ORDER BY Return_Rate DESC
 
 -- Return Rate per Ship Mode
 SELECT
@@ -59,7 +59,7 @@ SELECT
           COUNT(DISTINCT Order_ID)) * 100, 1) AS Return_Rate
 FROM `superstore_base`
 GROUP BY Ship_Mode
-ORDER BY Return_Rate_Percent DESC
+ORDER BY Return_Rate DESC
 
 -- Return Rate per Discount Band
 SELECT
@@ -71,4 +71,4 @@ SELECT
           COUNT(DISTINCT Order_ID)) * 100, 1) AS Return_Rate
 FROM `superstore_base`
 GROUP BY Discount_Band
-ORDER BY Return_Rate_Percent DESC
+ORDER BY Return_Rate DESC
