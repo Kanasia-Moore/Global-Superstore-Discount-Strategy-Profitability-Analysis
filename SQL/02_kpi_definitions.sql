@@ -47,7 +47,8 @@ Select
   COUNTIF(Return_Flag = 1) AS Total_Returns,
   Round(SUM(Sales), 2) AS Total_Sales,
   ROUND(SUM(Profit), 2) AS Total_Profit,
-  ROUND(COUNTIF(Return_Flag = 1) / COUNT(*) * 100, 1) AS Return_Rate
-FROM superstore_order_summary
+  ROUND(SAFE_DIVIDE(SUM(Profit), NULLIF(SUM(Sales), 0)) * 100, 2) AS Profit_Margin,
+  ROUND(COUNTIF(Return_Flag = 1) / COUNT(*) * 100, 2) AS Return_Rate
+FROM `superstore_order_summary`
 
 
