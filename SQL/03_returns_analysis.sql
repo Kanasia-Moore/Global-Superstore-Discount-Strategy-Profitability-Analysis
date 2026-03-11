@@ -1,10 +1,3 @@
--- Overall Return KPI
-Select 
-  COUNT(*) AS Total_Orders,
-  COUNTIF(Return_Flag = 1) AS Total_Returns,
-  ROUND(COUNTIF(Return_Flag = 1) / COUNT(*) * 100, 2) AS Return_Rate
-FROM superstore_order_summary
-
 -- Return Rate per Category
 SELECT
   Category,
