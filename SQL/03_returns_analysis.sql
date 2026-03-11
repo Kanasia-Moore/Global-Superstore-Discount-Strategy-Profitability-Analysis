@@ -30,7 +30,7 @@ SELECT
   ROUND(SAFE_DIVIDE(COUNTIF(Return_Flag = 1), COUNT(Order_ID)) * 100, 2) AS Return_Rate
 FROM `superstore_order_summary`
 GROUP BY Region
-ORDER BY Return_Rate_Percent DESC
+ORDER BY Return_Rate DESC
 
 -- Return Rate per Segment
 SELECT
@@ -96,7 +96,7 @@ SELECT
   ROUND(Avg(Discount) * 100, 2) AS Avg_Discount,
   ROUND(SAFE_DIVIDE(
           COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END),
-          COUNT(DISTINCT Order_ID)) * 100, 2) AS Return_Rate_Percent
+          COUNT(DISTINCT Order_ID)) * 100, 2) AS Return_Rate
 FROM `superstore_base`
 GROUP BY `Sub-Category` 
-ORDER BY Return_Rate_Percent DESC;
+ORDER BY Return_Rate DESC;
