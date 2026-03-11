@@ -39,29 +39,29 @@ ORDER BY Profit_Margin DESC
 WITH Subcat_Returns AS (
   SELECT
     `Sub-Category`,
-    COUNT(DISTINCT Order_ID) AS Orders_by_SubCat,
+    COUNT(DISTINCT Order_ID) AS Orders,
     COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END) AS Return_Orders,
-    ROUND(SUM(Sales), 2) AS Sales_by_SubCat,
-    ROUND(SUM(Profit), 2) AS Profit_by_SubCat,
-    ROUND(SAFE_DIVIDE(SUM(Profit), SUM(Sales)) * 100, 2) AS Profit_Margin
+    ROUND(SUM(Sales), 2) AS Sales,
+    ROUND(SUM(Profit), 2) AS Profit,
+    ROUND(SAFE_DIVIDE(SUM(Profit), SUM(Sales)) * 100, 2) AS Profit_Margin,
     ROUND(AVG(Discount) * 100, 2) AS Avg_Discount,
     ROUND(SAFE_DIVIDE(
         COUNT(DISTINCT CASE WHEN Return_Flag = 1 THEN Order_ID END),
         COUNT(DISTINCT Order_ID)) * 100, 2) AS Return_Rate
-  FROM `superstore_base`
+  FROM `inspiring-grove-457423-b0.global_superstore.superstore_base`
   GROUP BY `Sub-Category`
 )
 SELECT
   `Sub-Category`,
-  Orders_by_SubCat,
+  Orders,
   Return_Orders,
-  Sales_by_SubCat,
-  Profit_by_SubCat,
+  Sales,
+  Profit,
   Profit_Margin,
   Avg_Discount,
   Return_Rate,
 FROM Subcat_Returns
-WHERE Orders_by_SubCat >= 50
+WHERE Orders>= 50
   AND Return_Rate > 4.2
 ORDER BY Profit_Margin ASC, Return_Rate DESC;
 
