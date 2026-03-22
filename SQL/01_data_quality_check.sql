@@ -48,7 +48,7 @@ SELECT
 FROM `orders`;
 
 SELECT 
-  COUNT(Discount)
+  COUNT(*) AS low_discount_count
 FROM `orders`
 WHERE discount = 0.002;
 
