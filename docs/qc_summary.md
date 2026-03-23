@@ -9,8 +9,8 @@ To validate the reliability of the Global Superstore dataset before analysis, I 
 I first checked total row count versus distinct `Order_ID` count in the `orders` table to confirm whether each row represented a unique line item or whether multiple rows existed per order.
 
 **QC Findings:**
-- Total rows: `[insert result]`
-- Distinct orders: `[insert result]`
+- Total rows: `51290`
+- Distinct orders: `25728`
 
 **Interpretation:**  
 This confirms that the dataset is structured at the line-item level rather than one row per order, which is expected for transaction-level sales analysis.
@@ -22,8 +22,8 @@ This confirms that the dataset is structured at the line-item level rather than 
 I reviewed the minimum and maximum `Order_Date` values to confirm the time span covered by the dataset.
 
 **QC Findings:**
-- Earliest order date: `[insert result]`
-- Latest order date: `[insert result]`
+- Earliest order date: `2012-01-01`
+- Latest order date: `2015-12-31`
 
 **Interpretation:**  
 This establishes the reporting window for the dataset and confirms the date field is populated within the expected historical range.
@@ -35,11 +35,12 @@ This establishes the reporting window for the dataset and confirms the date fiel
 I checked the total number of records and distinct returned orders in the `returns` table.
 
 **QC Findings:**
-- Total return records: `[insert result]`
-- Distinct returned orders: `[insert result]`
+- Total return records: `1079`
+- Distinct returned orders: `1079`
 
 **Interpretation:**  
 This confirms how many orders were flagged as returned and helps validate the size of the return population before merging returns into the base table.
+This also confirms that while the `orders` table is line-level, the `returns` table is order-level
 
 ---
 
