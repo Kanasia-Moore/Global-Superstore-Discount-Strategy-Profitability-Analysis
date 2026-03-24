@@ -90,7 +90,7 @@ Metrics are defined across three layers:
 - **Aggregated Metrics** → Order-level calculations (e.g., total order sales)
 - **KPIs** → Business-level performance indicators
 
-A full breakdown is available in [`metric_dictionary.md`](./metric_dictionary.md)
+A full breakdown is available in [`metric_dictionary.md`](./docs/metric_dictionary.md)
 
 ---
 
