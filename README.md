@@ -2,7 +2,7 @@
 
 ## Project Navigation
 
-- [Business Questions](./business_questions.md)
+- [Business Questions](./docs/business_questions.md)
 - [Data Quality Checks](./qc_summary.md)
 - [Metric Dictionary](./metric_dictionary.md)
 - [SQL / Data Transformation](./sql/)
