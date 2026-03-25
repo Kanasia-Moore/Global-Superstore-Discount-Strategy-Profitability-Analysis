@@ -55,8 +55,7 @@ WHERE discount = 0.002;
 SELECT 
     ROUND(
         SUM(CASE WHEN discount = 0.002 THEN 1 ELSE 0 END) * 100.0
-        / COUNT(*), 
-    2) AS discount_percentage
+        / COUNT(*), 2) AS discount_percentage
 FROM `orders`;
 
 SELECT
@@ -104,11 +103,8 @@ SELECT
   ROUND(
     COUNT(*) * 100.0 / (
       SELECT COUNT(*) 
-      FROM `orders`
-    ),
-    2
+      FROM `orders`), 2
   ) AS perc_total_rows,
-  
   ROUND(SUM(o.Sales), 2) AS unmatched_sales,
   (
     SELECT ROUND(SUM(Sales), 2)
@@ -117,9 +113,7 @@ SELECT
   ROUND(
     SUM(o.Sales) * 100.0 / (
       SELECT SUM(Sales)
-      FROM `orders`
-    ),
-    2
+      FROM `orders`), 2
   ) AS perc_total_sales
 FROM `orders` o
 LEFT JOIN `people` p
