@@ -165,6 +165,39 @@ I tested the join between `orders` and `people` using `Region` to confirm whethe
 This validates whether the `people` table can be safely joined for region-level attribution. Any unmatched rows should be noted because they may affect regional performance reporting.
 
 ---
+### 12. Unmatched People Rows Check
+
+This qc was perfomed to identify the outlier of the join between the `orders` and `people` tables using region.
+
+**QC Findings:**
+- Region `Canada`
+
+**Interpretation:**  
+Investigation showed that the unmatched rows are associated with the "Canada" region, which does not exist in the people table.
+
+---
+### 13. "Canada" Region Order Impact Check
+
+This QC is to comapare 
+
+**QC Findings:**
+
+- % of total rows unmatched: `.8%`
+- Unmatched sales: `$66,928.17`
+- % of total sales unmatched: `.5%`
+
+**Interpretation:**
+This check confirms that not all regions in the orders table have a corresponding match in the people table. 
+
+**As a result:**
+
+- These records have no assigned manager (Person)
+- Region-level reporting may be incomplete for these orders
+- Manager-based KPIs may exclude or misrepresent this portion of data
+
+The affected records were retained to preserve overall data integrity, but the missing mapping represents a data modeling gap that should be addressed for accurate regional attribution.
+
+---
 
 ## Overall QC Conclusion
 
