@@ -1,83 +1,58 @@
-# Global Superstore Analysis: Profitability, Discounts & Return Risk
+# Global Superstore Profitability Analysis
 
-## Executive Summary
-
-This project analyzes Global Superstore sales data to identify where strong revenue may be masking weaker profitability.
-
-The analysis focuses on sales, profit, discount behavior, returns, and sub-category performance to understand where the business is generating activity without protecting margin. The final dashboard highlights a key profitability concern: **profit loss becomes more visible when discounts reach 30% or higher, especially within the Tables sub-category.**
-
-The goal of this project is to move beyond surface-level KPI reporting and provide a clearer view of business performance that supports better decision-making.
-
----
-
-## Business Problem
+## Problem Statement
 
 Global Superstore shows strong sales activity across regions, categories, and customer segments, but revenue alone does not determine business health.
 
-A business can generate high sales while still facing profitability challenges caused by low margins, broad discounting, or return-heavy areas. This project investigates where sales performance may be masking profitability risk.
+A business can generate high sales while still facing profitability challenges caused by low margins, broad discounting, or return-heavy areas. If stakeholders only focus on sales totals, they may miss where the business is losing efficiency or where revenue is not translating into sustainable profit.
+
+This project analyzes sales, profit, discount behavior, returns, and performance differences across the business to identify where strong revenue may be masking weaker outcomes.
 
 **Central question:**  
 Where is the business generating sales without protecting profitability?
 
 ---
 
+## Project Summary
+
+This analysis evaluates Global Superstore performance through the lens of profitability, discount strategy, and return risk. The final dashboard was built to help stakeholders compare sales against profit, identify low-margin categories, and recognize where discounting may be weakening business performance.
+
+The strongest finding is that **profit loss becomes more visible when discounts reach 30% or higher**, especially within the **Tables** sub-category. Tables produce the lowest overall profit and are often discounted near the same threshold where profitability begins to break down.
+
+---
+
 ## Key Findings
 
-- **Profit loss becomes more visible at 30% discounts or higher.** This suggests a potential discount risk threshold where promotions begin to weaken profitability.
-- **Tables produce the lowest overall profit.** This makes the Tables sub-category a priority area for deeper review.
-- **Tables are commonly discounted around the 30% mark.** This creates a compounding issue because a low-profit sub-category is often discounted near the level where profit loss begins.
-- **Sales and profit do not move evenly across sub-categories.** High sales should not automatically be treated as strong business performance.
+- **Profit loss becomes more visible at 30% discounts or higher.** This suggests a potential discount threshold where promotions begin to weaken margin.
+- **Tables produce the lowest overall profit.** This sub-category should be reviewed separately from Furniture because its performance is pulling down profitability.
+- **Tables are commonly discounted around the 30% mark.** A low-profit product group being discounted near a risky threshold creates a compounding profitability issue.
+- **Sales alone can create a misleading view of performance.** Revenue needs to be reviewed alongside profit, margin, returns, and discount behavior.
 
 ---
 
 ## Recommendations
 
-Based on the analysis, Global Superstore should:
-
-1. Review discount policies at or above the 30% threshold.
-2. Investigate the Tables sub-category separately from the broader Furniture category.
-3. Monitor sales, profit, margin, discounts, and returns together instead of evaluating revenue alone.
-4. Use recurring KPI tracking to identify where revenue is not converting into sustainable profit.
+- Review discount policies at or above the 30% threshold.
+- Investigate the Tables sub-category separately to understand whether pricing, cost, or discounting strategy is driving weak profit.
+- Monitor sales, profit, margin, returns, and discount levels together instead of evaluating revenue alone.
+- Use the dashboard as a recurring performance review tool to identify where revenue is not converting into sustainable profit.
 
 ---
 
 ## Dashboard
 
-The final Tableau dashboard was designed to help stakeholders quickly evaluate sales, profitability, discount impact, and return behavior.
-
-The dashboard focuses on:
-
-- KPI performance
-- Category and regional performance
-- Profitability and return behavior
-- Discount distribution and profit impact
+The Tableau dashboard highlights KPI performance, category and regional trends, return behavior, and discount impact.
 
 ![Global Superstore Dashboard](./04_dashboard/dashboard.png)
 
 ---
 
-## Project Walkthrough
+## Repository Structure
 
-This repository is structured as a guided business analysis rather than a collection of disconnected files.
-
-### 1. Project Context
-Defines the business problem and why the analysis matters.  
-[View Problem Statement](./01_project_context/problem_statement.md)
-
-### 2. Supporting Work
-Documents the data quality checks, metric definitions, and SQL preparation used to build a reliable analysis foundation.  
-[View Data Quality Checks](./02_supporting_work/data_quality_checks.md)  
-[View Metric Dictionary](./02_supporting_work/metric_dictionary.md)  
-[View SQL Work](./02_supporting_work/sql/)
-
-### 3. Analysis
-Summarizes the key findings and business recommendations from the dashboard and supporting analysis.  
-[View Key Findings](./03_analysis/key_findings.md)  
-[View Recommendations](./03_analysis/recommendations.md)
-
-### 4. Dashboard
-Contains the final dashboard output used to communicate findings visually.  
-[View Dashboard](./04_dashboard/)
+- [Project Context](./01_project_context/) — problem statement and business framing
+- [Supporting Work](./02_supporting_work/) — data quality checks, metric definitions, and SQL preparation
+- [Analysis](./03_analysis/) — key findings and recommendations
+- [Dashboard](./04_dashboard/) — final Tableau dashboard output
 
 ---
 
@@ -85,7 +60,7 @@ Contains the final dashboard output used to communicate findings visually.
 
 The project uses the Global Superstore dataset from Kaggle.
 
-The dataset includes three primary tables:
+The dataset includes:
 
 - **Orders** — transaction-level sales, profit, discount, and customer data
 - **Returns** — order-level return indicators
@@ -100,16 +75,3 @@ These tables were joined and transformed into an analysis-ready structure for KP
 - **SQL / BigQuery** — data validation, transformation, and KPI calculations
 - **Tableau** — dashboard design and visual analysis
 - **GitHub** — project documentation and version control
-
----
-
-## Skills Demonstrated
-
-This project demonstrates the ability to:
-
-- Translate a business problem into an analytical workflow
-- Validate and prepare data before analysis
-- Define clear business metrics and KPIs
-- Analyze profitability, discount behavior, and return risk
-- Build a stakeholder-facing dashboard
-- Communicate findings through a structured project narrative
