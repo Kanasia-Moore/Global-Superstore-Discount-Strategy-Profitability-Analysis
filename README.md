@@ -1,139 +1,115 @@
-# Global Superstore KPI & Performance Analysis
+# Global Superstore Analysis: Profitability, Discounts & Return Risk
 
-## Project Navigation
+## Executive Summary
 
-- [Problem Statement](./docs/problem_statement.md)
-- [Data Quality Checks](./docs/qc_summary.md)
-- [Metric Dictionary](./docs/metric_dictionary.md)
-- [SQL / Data Transformation](./SQL/)
-- [Dashboard](./Tableau/dashboard/)
-- [Key Insights](./docs/insights_and_recommendations/)
+This project analyzes Global Superstore sales data to identify where strong revenue may be masking weaker profitability.
 
-## Project Overview
+The analysis focuses on sales, profit, discount behavior, returns, and sub-category performance to understand where the business is generating activity without protecting margin. The final dashboard highlights a key profitability concern: **profit loss becomes more visible when discounts reach 30% or higher, especially within the Tables sub-category.**
 
-This project analyzes the Global Superstore dataset from [Kaggle](https://www.kaggle.com/datasets/endofnight17j03/global-superstore) to evaluate business performance, profitability, and return behavior.  
-
-The goal is to move beyond surface-level reporting and build a structured analysis that identifies key drivers of revenue, profit, and operational inefficiencies.
-
-This project follows a full analytical workflow:
-- Data validation and quality control
-- Data modeling and transformation
-- Metric definition and standardization
-- KPI development
-- Business-focused analysis
+The goal of this project is to move beyond surface-level KPI reporting and provide a clearer view of business performance that supports better decision-making.
 
 ---
 
-## Dataset
+## Business Problem
 
-The dataset consists of three primary tables:
+Global Superstore shows strong sales activity across regions, categories, and customer segments, but revenue alone does not determine business health.
 
-- **Orders** → Transaction-level sales data  
-- **Returns** → Flags for returned orders  
-- **People** → Regional ownership/assignment  
+A business can generate high sales while still facing profitability challenges caused by low margins, broad discounting, or return-heavy areas. This project investigates where sales performance may be masking profitability risk.
 
-These tables were joined and transformed to create a structured analysis-ready dataset.
-
----
-
-## Data Preparation
-
-Data preparation included:
-
-- Joining `orders`, `returns`, and `people` tables
-- Creating a return flag at the order level
-- Extracting time-based fields (month, year)
-- Creating discount groupings (`Discount_Band`)
-- Calculating profit margin at the line level
-- Aggregating data to the order level for accurate KPI analysis
-
-A full quality control review was conducted to validate:
-- Record consistency
-- Null values
-- Duplicate return records
-- Numeric ranges
-- Join integrity
+**Central question:**  
+Where is the business generating sales without protecting profitability?
 
 ---
 
-## Data Model
+## Key Findings
 
-The analysis follows a layered data model:
-
-- **Base Layer (`superstore_base`)**  
-  Enriched transaction-level dataset with derived fields
-
-- **Aggregation Layer (`superstore_order_summary`)**  
-  Order-level dataset for KPI calculations
-
-This structure ensures consistency and prevents double counting when calculating metrics.
+- **Profit loss becomes more visible at 30% discounts or higher.** This suggests a potential discount risk threshold where promotions begin to weaken profitability.
+- **Tables produce the lowest overall profit.** This makes the Tables sub-category a priority area for deeper review.
+- **Tables are commonly discounted around the 30% mark.** This creates a compounding issue because a low-profit sub-category is often discounted near the level where profit loss begins.
+- **Sales and profit do not move evenly across sub-categories.** High sales should not automatically be treated as strong business performance.
 
 ---
 
-## Metric Framework
+## Recommendations
 
-Metrics are defined across three layers:
+Based on the analysis, Global Superstore should:
 
-- **Base Metrics** → Row-level calculations (e.g., profit margin per line)
-- **Aggregated Metrics** → Order-level calculations (e.g., total order sales)
-- **KPIs** → Business-level performance indicators
-
-A full breakdown is available in [`metric_dictionary.md`](./docs/metric_dictionary.md)
-
----
-
-## Key Performance Indicators
-
-The following KPIs were used to evaluate performance:
-
-- **Total Orders** → Total number of transactions  
-- **Total Sales** → Overall revenue  
-- **Total Profit** → Overall profitability  
-- **Profit Margin (%)** → Efficiency of revenue generation  
-- **Total Returns** → Number of returned orders  
-- **Return Rate (%)** → Percentage of orders returned  
-
-These KPIs provide a high-level view of both financial performance and operational efficiency.
-
----
-
-## Analysis Approach
-
-The analysis was conducted using SQL in a structured, step-by-step approach:
-
-1. Data validation and QC checks  
-2. Creation of a base analytical dataset  
-3. Development of order-level aggregations  
-4. KPI calculations  
-5. Exploratory analysis of returns, discounts, and profitability  
-
-This approach ensures that insights are built on a reliable and well-defined data foundation.
-
----
-
-## Key Insights
-
-- Return rates represent a meaningful portion of total orders and impact profitability  
-- Higher discounts do not always translate to higher sales performance  
-- Certain orders generate high revenue but low profit margins  
-- Profitability varies significantly across transactions  
+1. Review discount policies at or above the 30% threshold.
+2. Investigate the Tables sub-category separately from the broader Furniture category.
+3. Monitor sales, profit, margin, discounts, and returns together instead of evaluating revenue alone.
+4. Use recurring KPI tracking to identify where revenue is not converting into sustainable profit.
 
 ---
 
 ## Dashboard
 
-The final dashboard visualizes:
+The final Tableau dashboard was designed to help stakeholders quickly evaluate sales, profitability, discount impact, and return behavior.
+
+The dashboard focuses on:
+
 - KPI performance
-- Return trends
-- Profitability analysis
-- Discount impact
+- Category and regional performance
+- Profitability and return behavior
+- Discount distribution and profit impact
+
+![Global Superstore Dashboard](./04_dashboard/dashboard.png)
 
 ---
 
-## Tools & Technologies
+## Project Walkthrough
 
-- **SQL (BigQuery)** → Data transformation and analysis  
-- **Tableau / Power BI (optional)** → Data visualization  
-- **GitHub** → Version control and project presentation  
+This repository is structured as a guided business analysis rather than a collection of disconnected files.
+
+### 1. Project Context
+Defines the business problem and why the analysis matters.  
+[View Problem Statement](./01_project_context/problem_statement.md)
+
+### 2. Supporting Work
+Documents the data quality checks, metric definitions, and SQL preparation used to build a reliable analysis foundation.  
+[View Data Quality Checks](./02_supporting_work/data_quality_checks.md)  
+[View Metric Dictionary](./02_supporting_work/metric_dictionary.md)  
+[View SQL Work](./02_supporting_work/sql/)
+
+### 3. Analysis
+Summarizes the key findings and business recommendations from the dashboard and supporting analysis.  
+[View Key Findings](./03_analysis/key_findings.md)  
+[View Recommendations](./03_analysis/recommendations.md)
+
+### 4. Dashboard
+Contains the final dashboard output used to communicate findings visually.  
+[View Dashboard](./04_dashboard/)
 
 ---
+
+## Dataset
+
+The project uses the Global Superstore dataset from Kaggle.
+
+The dataset includes three primary tables:
+
+- **Orders** — transaction-level sales, profit, discount, and customer data
+- **Returns** — order-level return indicators
+- **People** — regional assignment information
+
+These tables were joined and transformed into an analysis-ready structure for KPI reporting and profitability analysis.
+
+---
+
+## Tools Used
+
+- **SQL / BigQuery** — data validation, transformation, and KPI calculations
+- **Tableau** — dashboard design and visual analysis
+- **GitHub** — project documentation and version control
+
+---
+
+## Skills Demonstrated
+
+This project demonstrates the ability to:
+
+- Translate a business problem into an analytical workflow
+- Validate and prepare data before analysis
+- Define clear business metrics and KPIs
+- Analyze profitability, discount behavior, and return risk
+- Build a stakeholder-facing dashboard
+- Communicate findings through a structured project narrative
