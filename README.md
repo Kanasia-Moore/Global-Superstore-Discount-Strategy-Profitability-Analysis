@@ -43,7 +43,7 @@ The strongest finding is that **profit loss becomes more visible when discounts 
 
 The Tableau dashboard highlights KPI performance, category and regional trends, return behavior, and discount impact.
 
-![Global Superstore Dashboard](./visuals/dashboard.png)
+![Global Superstore Dashboard](./visuals/dashboard1.png)
 
 ---
 
